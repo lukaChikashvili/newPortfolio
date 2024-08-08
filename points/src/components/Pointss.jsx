@@ -1,40 +1,47 @@
-import React, { useEffect, useRef } from 'react'
-import * as THREE from 'three'
+import React, { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 import vertex from '../shaders/particles/vertex.glsl';
 import fragment from '../shaders/particles/fragment.glsl';
-import { useTexture } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
-
-
+import { useGLTF } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 
 const Particles = () => {
+  const particleRef = useRef();
+  const model = useGLTF('./soccer_ball.glb');
 
-  let particleRef = useRef();
+  const particleGeometry = new THREE.BufferGeometry();
 
-     const particleGeometry = new THREE.SphereGeometry(3);
+  const positions = [];
 
-     const particleMaterial = new THREE.ShaderMaterial({
-      vertexShader: vertex,
-      fragmentShader: fragment,
+  useEffect(() => {
+
+      
+  model.scene.traverse((child) => {
+    if(child.isMesh) {
+      const { position } = child.geometry.attributes;
+
+      console.log(position)
+    }
+  })
    
-     });
+  }, [model]);
 
-     return (
-        <primitive ref={particleRef}  object={new THREE.Points(particleGeometry, particleMaterial)}/>
-     );
-}
+  const particleMaterial = new THREE.ShaderMaterial({
+    vertexShader: vertex,
+    fragmentShader: fragment,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+
+  return <points ref={particleRef} geometry={particleGeometry} material={particleMaterial} />;
+};
 
 const Pointss = () => {
-
-  
- 
   return (
- <>
-   <Particles />
+    <>
+      <Particles />
+    </>
+  );
+};
 
-  
- </>
-  )
-}
-
-export default Pointss
+export default Pointss;

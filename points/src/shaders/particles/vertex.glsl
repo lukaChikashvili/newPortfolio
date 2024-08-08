@@ -9,6 +9,6 @@ void main()
     gl_Position = projectedPosition;
 
     // Point size
-    gl_PointSize = 10.0;
+    gl_PointSize = 20.0;
 
 }
