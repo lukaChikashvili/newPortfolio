@@ -1,6 +1,8 @@
 attribute vec3 aPositionTarget;
 uniform float uProgress;
 varying vec3 vColor;
+uniform vec3 uColorA;
+uniform vec3 uColorB;
 
 
 #include ../includes/simlex3d.glsl
@@ -9,7 +11,7 @@ void main()
 {
 
    // mixed position
-   float noise = simplexNoise3d(position);
+   float noise = simplexNoise3d(position) * 0.5;
    noise = smoothstep(-1.0, 1.0, noise);
 
    float duration = 0.4;
@@ -31,6 +33,6 @@ void main()
     // Point size
     gl_PointSize = 20.0;
 
-    vColor = vec3(noise);
+    vColor = mix(uColorA * 0.5, uColorB * 0.5, noise);
 
 }

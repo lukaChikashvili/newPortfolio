@@ -10,6 +10,10 @@ const Particles = () => {
   const particleRef = useRef();
   const model = useGLTF('./models1.glb');
   const particleGeometry = new THREE.BufferGeometry();
+  
+   const colorA = '#ff7300';
+   const colorB = '#0091ff';
+
   const particleMaterial = new THREE.ShaderMaterial({
     vertexShader: vertex,
     fragmentShader: fragment,
@@ -17,6 +21,8 @@ const Particles = () => {
     depthWrite: false,
     uniforms: {
       uProgress: { value: 0 },
+      uColorA: new THREE.Uniform(new THREE.Color(colorA)),
+      uColorB: new THREE.Uniform(new THREE.Color(colorB)),
     },
   });
 
@@ -24,6 +30,8 @@ const Particles = () => {
 
   useEffect(() => {
     const positions = model.scene.children.map((child) => child.geometry.attributes.position);
+
+  
 
     let maxCount = 0;
     for (const position of positions) {
