@@ -26,7 +26,7 @@ const Pointss = () => {
        
    {violin &&  <primitive object={violinModel.scene} scale = {0.05} position = {[ 0, -0.5, 0 ]}  />}
 
-   {ukulele &&  <primitive object={uku.scene} scale = {3} position = {[ 0, 0, 0 ]}  />}
+   {ukulele &&  <primitive object={uku.scene} scale = {3} position = {[ 0, 0.5, 0 ]}  />}
    </Float>
     </>
   );

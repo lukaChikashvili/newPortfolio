@@ -5,17 +5,17 @@ import Pointss from './components/Pointss'
 import drumImg from './assets/drumImg.png'
 import { useContext } from 'react'
 import { UserContext } from './context/UserContext'
-import violin from './assets/violin.png';
+import violins from './assets/violin.png';
 import ukul from './assets/ukul.png';
 
 function App() {
 
   // retrieve from context
-  const { setModal, modal , setViolin, setDrum, setUkulele} = useContext(UserContext);
+  const { setModal, modal , setViolin, setDrum, setUkulele, violin, ukulele, drum} = useContext(UserContext);
 
   // images for modal
   const images = [
-    violin, 
+    violins, 
     ukul,
     drumImg
   ];
@@ -45,7 +45,7 @@ function App() {
      <Lights />
      </Canvas>
 
-     <div className='absolute top-0 left-0  bg-transparent w-full min-h-screen '>
+     <div className='absolute top-0 left-0  bg-transparent w-full min-h-screen flex items-center justify-center   '>
      
    <img src={drumImg} className='w-16 h-16 rounded-full object-cover absolute bottom-6 
    right-6 shadow-lg cursor-pointer duration-500 ease hover:opacity-80' 
@@ -59,6 +59,9 @@ function App() {
     ))}
       </div>
  }
+
+
+     <h1 className='text-6xl uppercase ' style={{marginTop:'550px'}}>{violin ? "The violin" : ukulele ? "the ukulele" : drum ? "the drums" : ""}</h1>
      </div>
     </>
   )

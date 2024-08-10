@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/johnyokonysm');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,8 +13,7 @@
     overflow: hidden;
     background-color: #F5F7F8;
 background-image: url(http://www.transparenttextures.com/patterns/wide-rectangles.png);
-
-    font-family: 'Caster Serif', sans-serif;
+font-family: 'Johnyokonysm', sans-serif;
 }
 
 body {
