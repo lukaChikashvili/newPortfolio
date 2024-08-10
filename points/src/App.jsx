@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-     <Canvas camera={ { fov: 75, near: 0.2, far: 1000, position: [0, 0, 10]  } }>
+     <Canvas camera={ { fov: 75, near: 0.2, far: 1000, position: [0, 0, 2]  } }>
     <OrbitControls makeDefault />
      <Pointss />
      <Lights />
