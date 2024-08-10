@@ -5,6 +5,7 @@ import fragment from '../shaders/particles/fragment.glsl';
 import { Float, useGLTF} from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 import { UserContext } from '../context/UserContext';
+import { Bloom, EffectComposer, Glitch, Noise, Outline } from '@react-three/postprocessing'
 
 
 const Pointss = () => {
@@ -21,6 +22,9 @@ const Pointss = () => {
 
   return (
     <>
+
+ 
+    
     <Float>
      {drum &&  <primitive object={drumModel.scene} scale = {1.5} position = {[ 0, -0.5, 0 ]}/>} 
        

@@ -3,10 +3,11 @@ import { Canvas } from '@react-three/fiber'
 import Lights from './components/Lights'
 import Pointss from './components/Pointss'
 import drumImg from './assets/drumImg.png'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { UserContext } from './context/UserContext'
 import violins from './assets/violin.png';
 import ukul from './assets/ukul.png';
+import gsap from 'gsap'
 
 function App() {
 
@@ -37,6 +38,12 @@ function App() {
      }
   }
 
+  useEffect(() => {
+    gsap.fromTo('.txt', 
+      { opacity: 0, y: 50 },  
+      { opacity: 1, y: 0, duration: 1.4, ease: 'power2.inOut' } 
+    );
+  }, [violin, ukulele, drum]); 
   return (
     <>
      <Canvas camera={ { fov: 75, near: 0.2, far: 1000, position: [0, 0, 2]  } }>
@@ -47,7 +54,7 @@ function App() {
 
      <div className='absolute top-0 left-0  bg-transparent w-full min-h-screen flex items-center justify-center   '>
      
-   <img src={drumImg} className='w-16 h-16 rounded-full object-cover absolute bottom-6 
+   <img src={violin ? violins : drum ? drumImg : ukulele ? ukul : ""} className='w-16 h-16 rounded-full object-cover absolute bottom-6 
    right-6 shadow-lg cursor-pointer duration-500 ease hover:opacity-80' 
     onClick={() => setModal(!modal)}
    />
@@ -61,7 +68,7 @@ function App() {
  }
 
 
-     <h1 className='text-6xl uppercase ' style={{marginTop:'550px'}}>{violin ? "The violin" : ukulele ? "the ukulele" : drum ? "the drums" : ""}</h1>
+     <h1 className='text-6xl uppercase txt opacity-0 cursor-pointer text-[#191919]' style={{marginTop:'550px'}} >{violin ? "The violin" : ukulele ? "the ukulele" : drum ? "the drums" : ""}</h1>
      </div>
     </>
   )
