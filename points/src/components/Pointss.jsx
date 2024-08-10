@@ -1,19 +1,33 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import vertex from '../shaders/particles/vertex.glsl';
 import fragment from '../shaders/particles/fragment.glsl';
-import { useGLTF} from '@react-three/drei'
+import { Float, useGLTF} from '@react-three/drei'
+import { useFrame } from '@react-three/fiber';
+import { UserContext } from '../context/UserContext';
 
 
 const Pointss = () => {
 
+  const { violin, drum, ukulele } = useContext(UserContext);
+
   // import ukulele
-  const ukulele = useGLTF('./drums_high-poly.glb');
+  const drumModel = useGLTF('./drums_high-poly.glb');
+  const violinModel = useGLTF('./violin.glb');
+  const uku = useGLTF('./ukulele.glb');
+
+
+
 
   return (
     <>
-       <primitive object={ukulele.scene} scale = {1.5} position = {[ 0, -0.5, 0 ]} />
-   
+    <Float>
+     {drum &&  <primitive object={drumModel.scene} scale = {1.5} position = {[ 0, -0.5, 0 ]}/>} 
+       
+   {violin &&  <primitive object={violinModel.scene} scale = {0.05} position = {[ 0, -0.5, 0 ]}  />}
+
+   {ukulele &&  <primitive object={uku.scene} scale = {3} position = {[ 0, 0, 0 ]}  />}
+   </Float>
     </>
   );
 };
